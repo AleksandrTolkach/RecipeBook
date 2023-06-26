@@ -1,0 +1,53 @@
+version: '3.5'
+
+services:
+  database:
+    image: mysql:8.0
+    container_name: "recipe_db"
+    env_file:
+      - local.env
+    ports:
+      - "3307:3306"
+    networks:
+      - recipe_ntwrk
+
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    depends_on:
+      - database
+    volumes:
+      - minio_storage:/data
+    env_file:
+      - local.env
+    command: server --console-address ":9001" /data
+    networks:
+      recipe_ntwrk:
+        ipv4_address: 10.254.0.100
+
+  app:
+    container_name: "recipe_book"
+    env_file:
+      - local.env
+    build:
+      context: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - minio
+    volumes:
+      - ./:/app
+    networks:
+      - recipe_ntwrk
+
+networks:
+  recipe_ntwrk:
+    name: recipe_ntwrk
+    ipam:
+      config:
+        - subnet: 10.254.0.0/24
+volumes:
+  minio_storage: {}
+

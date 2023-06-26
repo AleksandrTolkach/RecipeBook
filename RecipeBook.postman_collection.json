@@ -1,0 +1,533 @@
+{
+	"info": {
+		"_postman_id": "131908b7-df13-4c79-9adf-28a554b1f0b1",
+		"name": "RecipeBook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25768753"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get-profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/profile",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/:id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\" : \"pupo\",\n    \"firstName\" : \"Pepe\",\n    \"lastName\" : \"Papa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-user-photo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/userPhoto.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users/photo",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Alex\",\n    \"lastName\": \"Toukach\",\n    \"login\": \"admin\",\n    \"password\": \"1234_Admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/sign-up",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"login\": \"admin\",\n  \"password\": \"1234_Admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/sign-in",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/auth/logout",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "recipe",
+			"item": [
+				{
+					"name": "create-recipe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "recipeCreatingDto",
+									"value": "{\n\"recipeName\": \"Cucumber salad with garlic\",\n\"steps\": [\n\"Для начала подготовьте необходимые ингредиенты по списку.\",\n\"Огурцы вымойте и нарежьте тонкими кружочками.\",\n\"Укроп вымойте, обсушите и мелко порубите. По желанию можете заменить или дополнить другой зеленью, например, петрушкой, зеленым луком, мятой, шпинатом, черемшой или использовать смесь разных трав.\",\n\"В миске соедините огурцы, укроп и пропущенные через пресс зубчики чеснока.\",\n\"Салат полейте растительным маслом, посолите и перемешайте. Дайте салату постоять 5 минут и как следует пропитаться.\"\n],\n\"ingredients\": [\n{\n\"ingredientName\": \"Огурцы\",\n\"measureUnit\": \"GRAM\",\n\"quantity\": 400\n},\n{\n\"ingredientName\": \"Укроп\",\n\"measureUnit\": \"GRAM\",\n\"quantity\": 60\n},\n{\n\"ingredientName\": \"Растительное масло\",\n\"measureUnit\": \"MILLILITER\",\n\"quantity\": 60\n},\n{\n\"ingredientName\": \"Чеснок\",\n\"measureUnit\": \"PCS\",\n\"quantity\": 3\n},\n{\n\"ingredientName\": \"Соль\",\n\"measureUnit\": \"GRAM\",\n\"quantity\": 1\n}\n],\n\"cookTime\": 20\n}",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "recipePhoto",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/recipePhoto.jpg"
+								},
+								{
+									"key": "stepPhotos",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/step1.jpg"
+								},
+								{
+									"key": "stepPhotos",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/step2.jpg"
+								},
+								{
+									"key": "stepPhotos",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/step3.jpg"
+								},
+								{
+									"key": "stepPhotos",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/step4.jpg"
+								},
+								{
+									"key": "stepPhotos",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/step5.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/recipes",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/recipes?page=0&size=20",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-recipe-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/recipes/:id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"recipes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-recipe-by-author",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/recipes/user/:id?page=0&size=5",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"recipes",
+								"user",
+								":id"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-recipe",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "recipeCreatingDto",
+									"value": "{\n\"recipeName\": \"Apricot compote\",\n\"steps\": [\n\"Подготовьте необходимые ингредиенты. Абрикосы для компота нужно отобрать плотные, без повреждений и гнили, но спелые; незрелые фрукты могут сделать напиток горьким.\",\n\"Банки помойте. Влажные банки поставьте в холодную духовку на решетку горлышком, включите на 150 градусов, держите банки в духовке 20 минут. \",\n\"Банки наполните абрикосами на одну треть. В чайнике вскипятите воду. Залейте кипятком абрикосы в банках. Накройте банки крышками и оставьте на 20 минут.\",\n\"Затем воду из банок слейте в кастрюлю, для этого лучше воспользоваться специальной крышкой с отверстиями, чтобы абрикосы не выпали из банки. Всыпьте в кастрюлю с водой сахар.\",\n\"Залейте кипящим сиропом абрикосы в банках до плечиков. Сразу закатайте крышками банки, переверните вверх дном..\"\n],\n\"ingredients\": [\n{\n\"ingredientName\": \"Абрикосы\",\n\"measureUnit\": \"GRAM\",\n\"quantity\": 500\n},\n{\n\"ingredientName\": \"Сахар\",\n\"measureUnit\": \"GRAM\",\n\"quantity\": 300\n},\n{\n\"ingredientName\": \"Вода\",\n\"measureUnit\": \"LITER\",\n\"quantity\": 2\n}\n],\n\"cookTime\": 60\n}",
+									"contentType": "application/json",
+									"type": "text"
+								},
+								{
+									"key": "recipePhoto",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/2_recipePhoto.jpg"
+								},
+								{
+									"key": "stepPhotos",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/2_step1.jpg"
+								},
+								{
+									"key": "stepPhotos",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/2_step2.jpg"
+								},
+								{
+									"key": "stepPhotos",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/2_step3.jpg"
+								},
+								{
+									"key": "stepPhotos",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/2_step5.jpg"
+								},
+								{
+									"key": "stepPhotos",
+									"type": "file",
+									"src": "/home/hoho/Downloads/photos/2_step6.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/recipes/:id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"recipes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggle-favorite-recipe",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/recipes/favorites/:id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"recipes",
+								"favorites",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find-saved-recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/recipes/favorites?page=0&size=10",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"recipes",
+								"favorites"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-recipe",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/recipes/:id",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"recipes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "{{LOCAL_URL}}",
+			"type": "string"
+		},
+		{
+			"key": "LOCAL_URL",
+			"value": "http://localhost:8080/api/v1",
+			"type": "string"
+		}
+	]
+}
